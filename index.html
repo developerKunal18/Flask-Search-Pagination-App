@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search + Pagination App</title>
+</head>
+<body>
+
+<h1>Notes Search App</h1>
+
+<form method="GET">
+    <input
+        type="text"
+        name="search"
+        value="{{ search }}"
+        placeholder="Search notes"
+    >
+
+    <button type="submit">
+        Search
+    </button>
+</form>
+
+<hr>
+
+{% for note in notes.items %}
+    <p>{{ note.content }}</p>
+{% endfor %}
+
+<hr>
+
+{% if notes.has_prev %}
+    <a href="/?page={{ notes.prev_num }}&search={{ search }}">
+        Previous
+    </a>
+{% endif %}
+
+Page {{ notes.page }} of {{ notes.pages }}
+
+{% if notes.has_next %}
+    <a href="/?page={{ notes.next_num }}&search={{ search }}">
+        Next
+    </a>
+{% endif %}
+
+</body>
+</html>
